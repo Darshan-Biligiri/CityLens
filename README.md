@@ -1,0 +1,22 @@
+# CityLens
+
+(https://lovable.dev/projects/87974bed-7b05-4480-b0df-1e5b5cdb678c).
+
+- **Ship faster**: describe what you want to build and Lovable handles the code.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+
+## Development
+
+Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+
+```sh
+git clone <this-repository-url>
+cd <repository-name>
+npm i
+npm run dev
+```
+
+
+## JavaScript edition
+This project edition uses React with JavaScript only. UI files use `.jsx`; JavaScript modules and config use `.js`. TypeScript source files and `tsconfig.json` have been removed.

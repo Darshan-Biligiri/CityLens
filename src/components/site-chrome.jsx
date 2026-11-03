@@ -1,0 +1,27 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { Link } from "@tanstack/react-router";
+import { ArrowRight, Menu, Plus, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { btn, container, nudge } from "./ui-kit";
+import { cn } from "@/lib/utils";
+const NAV = [
+    { to: "/", label: "Overview", exact: true },
+    { to: "/issues", label: "Explore issues", exact: false },
+    { to: "/about", label: "About", exact: false },
+];
+export function Logo() {
+    return (_jsxs(Link, { to: "/", className: "flex shrink-0 items-center gap-2.5 text-ink", "aria-label": "CityLens home", children: [_jsxs("svg", { width: "24", height: "24", viewBox: "0 0 24 24", "aria-hidden": true, children: [_jsx("circle", { cx: "12", cy: "12", r: "10.5", fill: "none", stroke: "currentColor", strokeWidth: "1.5" }), _jsx("circle", { cx: "12", cy: "12", r: "4.5", className: "fill-primary" })] }), _jsx("span", { className: "text-[15px] font-semibold tracking-[-0.01em]", children: "CityLens" }), _jsx("span", { className: "hidden rounded-sm border px-1.5 py-px font-mono text-[10px] text-muted-foreground sm:inline", children: "BLR" })] }));
+}
+export function SiteHeader() {
+    const [open, setOpen] = useState(false);
+    useEffect(() => {
+        document.body.style.overflow = open ? "hidden" : "";
+    }, [open]);
+    return (_jsxs("header", { className: "sticky top-0 z-[1000] border-b bg-background/85 backdrop-blur-md", children: [_jsxs("div", { className: cn(container, "flex h-16 items-center justify-between gap-6"), children: [_jsx(Logo, {}), _jsx("nav", { "aria-label": "Main", className: "hidden h-full items-center gap-1 md:flex", children: NAV.map((n) => (_jsx(Link, { to: n.to, activeOptions: { exact: n.exact }, className: "relative flex h-full items-center px-3 text-sm text-muted-foreground transition-colors hover:text-ink after:absolute after:inset-x-3 after:-bottom-px after:h-0.5 after:scale-x-0 after:bg-ink after:transition-transform data-[status=active]:text-ink data-[status=active]:after:scale-x-100", children: n.label }, n.to))) }), _jsxs("div", { className: "flex items-center gap-2", children: [_jsxs(Link, { to: "/report", className: btn({ size: "sm", className: "hidden sm:inline-flex" }), children: [_jsx(Plus, { size: 15 }), " Report an issue"] }), _jsx("button", { className: "grid size-9 place-items-center rounded-sm text-ink hover:bg-secondary md:hidden", onClick: () => setOpen(!open), "aria-label": open ? "Close menu" : "Open menu", "aria-expanded": open, children: open ? _jsx(X, { size: 20 }) : _jsx(Menu, { size: 20 }) })] })] }), open && (_jsxs("nav", { "aria-label": "Mobile", className: "animate-in fade-in slide-in-from-top-2 h-[calc(100dvh-4rem)] border-t bg-background px-5 pt-4 duration-200 md:hidden", children: [NAV.map((n) => (_jsxs(Link, { to: n.to, activeOptions: { exact: n.exact }, onClick: () => setOpen(false), className: "flex items-center justify-between border-b py-4 text-lg font-medium text-ink data-[status=active]:text-primary", children: [n.label, " ", _jsx(ArrowRight, { size: 18, className: "text-muted-foreground" })] }, n.to))), _jsxs(Link, { to: "/report", onClick: () => setOpen(false), className: btn({ size: "lg", className: "mt-6 w-full" }), children: [_jsx(Plus, { size: 16 }), " Report an issue"] })] }))] }));
+}
+export function SiteFooter() {
+    return (_jsxs("footer", { className: "mt-28 border-t bg-paper", children: [_jsxs("div", { className: cn(container, "grid gap-10 py-14 md:grid-cols-[2fr_1fr_1fr_1fr]"), children: [_jsxs("div", { children: [_jsx(Logo, {}), _jsx("p", { className: "mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground", children: "See your city. Make it better. A citizen record of Bengaluru's walking infrastructure." }), _jsxs(Link, { to: "/report", className: cn(btn({ variant: "secondary", size: "sm" }), "mt-6"), children: ["Report an issue ", _jsx(ArrowRight, { size: 14, className: nudge })] })] }), _jsx(FooterCol, { title: "Platform", links: [["/report", "Report an issue"], ["/issues", "Explore issues"], ["/about", "About"]] }), _jsxs("div", { className: "text-sm", children: [_jsx("p", { className: "eyebrow mb-4", children: "Coverage" }), _jsxs("ul", { className: "space-y-2.5 text-muted-foreground", children: [_jsx("li", { children: "Bengaluru Urban" }), _jsx("li", { children: "198 wards" }), _jsx("li", { children: "5 issue categories" })] })] }), _jsxs("div", { className: "text-sm", children: [_jsx("p", { className: "eyebrow mb-4", children: "Status" }), _jsx("p", { className: "leading-relaxed text-muted-foreground", children: "Demo build. Reports stay in this browser and are not sent to any authority." })] })] }), _jsx("div", { className: "border-t", children: _jsxs("div", { className: cn(container, "flex flex-col gap-1 py-5 font-mono text-[11px] text-muted-foreground sm:flex-row sm:justify-between"), children: [_jsx("span", { children: "\u00A9 2026 CityLens \u00B7 Independent civic project" }), _jsx("span", { children: "12.9716\u00B0 N, 77.5946\u00B0 E" })] }) })] }));
+}
+function FooterCol({ title, links }) {
+    return (_jsxs("div", { className: "text-sm", children: [_jsx("p", { className: "eyebrow mb-4", children: title }), _jsx("ul", { className: "space-y-2.5", children: links.map(([to, l]) => (_jsx("li", { children: _jsx(Link, { to: to, className: "text-foreground transition-colors hover:text-primary", children: l }) }, to))) })] }));
+}
